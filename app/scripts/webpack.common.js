@@ -1,8 +1,10 @@
+
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ES3Plugin = require("webpack-es3-plugin");
 
 module.exports = {
   context: path.resolve('__dirname', '../'),
@@ -11,7 +13,15 @@ module.exports = {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
   },
   entry: {
-    webssh2: './client/src/js/index.ts',
+    webssh2: [
+      'core-js/stable/array', 
+      'core-js/stable/number', 
+      'core-js/stable/map', 
+      'core-js/stable/object', 
+      'core-js/stable/promise', 
+      'core-js/stable/string', 
+      './client/src/js/index.ts'
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -19,6 +29,7 @@ module.exports = {
       patterns: ['./client/src/client.htm', './client/src/favicon.ico'],
     }),
     new MiniCssExtractPlugin(),
+    new ES3Plugin()
   ],
   output: {
     filename: '[name].bundle.js',

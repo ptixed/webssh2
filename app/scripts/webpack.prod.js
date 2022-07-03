@@ -1,12 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'production',
   optimization: {
-    minimize: true,
+    minimize: false
+    /*
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -14,6 +15,7 @@ module.exports = merge(common, {
           safari10: false,
         },
       }),
-    ],
+    ]
+    */
   },
 });

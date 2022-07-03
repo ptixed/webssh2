@@ -27,6 +27,16 @@
       <div id="countdown"></div>
     </div>
   </div>
-<script src="/ssh/webssh2.bundle.js" defer></script>
+  <script>
+    window.onerror = function (message, url, line, column, error) {
+      // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#notes
+      if (!error)
+        return;
+      document.getElementById('dropupContent').style.display = 'block';
+      document.getElementById('logBtn').innerHTML = message + " line: " + line + " column: " + column + " error: " + error;
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/core-js-bundle@3.23.3/minified.js.map"></script>
+  <script src="/ssh/webssh2.bundle.js" defer></script>
 </body>
 </html>

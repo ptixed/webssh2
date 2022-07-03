@@ -53,6 +53,32 @@ const terminalContainer = document.getElementById('terminal-container');
 term.loadAddon(fitAddon);
 term.open(terminalContainer);
 term.focus();
+term.options.theme = {
+    foreground: '#000',
+    background: '#fff',
+    cursor: '#000',
+    cursorAccent: '#888',
+    selection: '#888',
+
+    black: '#000',
+    red: '#000',
+    green: '#000',
+    yellow: '#000',
+    blue: '#000',
+    magenta: '#000',
+    cyan: '#000',
+    white: '#fff',
+
+    brightBlack: '#000',
+    brightRed: '#888',
+    brightGreen: '#888',
+    brightYellow: '#888',
+    brightBlue: '#888',
+    brightMagenta: '#888',
+    brightCyan: '#888',
+    brightWhite: '#fff',
+};
+term.options.fontFamily = "monospace";
 fitAddon.fit();
 
 const socket = io({
@@ -177,7 +203,7 @@ socket.on('data', (data: string | Uint8Array) => {
 
 socket.on('connect', () => {
   socket.emit('geometry', term.cols, term.rows);
-  setTimeout(() => resizeScreen(), 10000);
+  setTimeout(() => resizeScreen(), 2000);
   debug(`geometry: ${term.cols}, ${term.rows}`);
 });
 
